@@ -4,9 +4,13 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 
+// Filters
+import { allExceptionFilter } from "./filters/allExceptionFilter.js";
+
 // Routes
 import authRoutes from "./modules/auth/auth.routes.js";
-import { allExceptionFilter } from "./filters/allExceptionFilter.js";
+import noteRoutes from "./modules/note/note.routes.js";
+
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -29,6 +33,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/note", noteRoutes);
 
 
 app.use(allExceptionFilter);
