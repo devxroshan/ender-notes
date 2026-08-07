@@ -8,38 +8,39 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  email String @unique
-  name String
-  password String
-  isEmailVerified Boolean @default(false)
-  notes Note[]
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
+  id              String   @id @default(uuid())
+  email           String   @unique
+  name            String
+  password        String
+  isEmailVerified Boolean  @default(false)
+  notes           Note[]
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
 }
 
 model Otp {
-  id String @id @default(uuid())
-  email String
-  otp String
+  id        String   @id @default(uuid())
+  email     String
+  otp       String
   expiresAt DateTime
   createdAt DateTime @default(now())
 }
 
 model ExchangeToken {
-  id String @id @default(uuid())
-  token String @unique
-  userId String
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  data      String @default("")
   expiresAt DateTime
   createdAt DateTime @default(now())
 }
 
 model Note {
-  id String @id @default(uuid())
-  title String
-  content String @default("")
-  user User @relation(fields: [userId], references: [id])
-  userId String
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @default("")
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

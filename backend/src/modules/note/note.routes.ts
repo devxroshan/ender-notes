@@ -15,10 +15,10 @@ import { updateNoteSchema } from "./schema/updateNote.schema.js";
 
 const router = express.Router();
 
-router.post("/", isLoggedIn, validateSchema({ body: createNoteSchema }), CreateNote);
-router.put("/:id", isLoggedIn,validateSchema({ body: updateNoteSchema }), UpdateNote);
-router.delete("/:id", isLoggedIn, DeleteNote);
-router.get("/all", isLoggedIn, GetAllNotes);
-router.get("/:id", isLoggedIn,GetNoteById);
+router.post("/", validateSchema({ body: createNoteSchema }), CreateNote);
+router.put("/:id", validateSchema({ body: updateNoteSchema }), UpdateNote);
+router.delete("/:id", DeleteNote);
+router.get("/all", GetAllNotes);
+router.get("/:id", GetNoteById);
 
 export default router;
